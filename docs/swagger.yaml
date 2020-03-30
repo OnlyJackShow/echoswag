@@ -1,0 +1,65 @@
+basePath: '{{.BasePath}}'
+definitions:
+  dto.BaseResponse:
+    properties:
+      code:
+        type: integer
+      mgs:
+        type: string
+    type: object
+host: '{{.Host}}'
+info:
+  contact: {}
+  description: '{{.Description}}'
+  license: {}
+  title: '{{.Title}}'
+  version: '{{.Version}}'
+paths:
+  /boss/product/brand/list:
+    get:
+      consumes:
+      - text/plain
+      parameters:
+      - description: 品牌ID
+        in: query
+        name: id
+        type: string
+      - description: 品牌名称
+        in: query
+        name: name
+        type: string
+      - description: 品牌首字母
+        in: query
+        name: initial
+        type: string
+      - description: 品牌分类ID
+        in: query
+        name: category_id
+        type: string
+      - description: 分页索引
+        in: query
+        name: page_index
+        required: true
+        type: integer
+      - description: 分页大小
+        in: query
+        name: page_size
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.BaseResponse'
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.BaseResponse'
+            type: object
+      summary: 品牌列表
+      tags:
+      - 商家品牌
+swagger: "2.0"
